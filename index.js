@@ -2,11 +2,20 @@ import express from "express"
 const app = express()
 const port = 3000
 
-app.get('/api/:id', (req, res) => {
-  const nome = req.query.nome
-  const id = req.query.id
+app.get('/api/exercicio1/:id', (req, res) => {
+  const num1 = parseFloat(req.query.num1)
+  const num2 = parseFloat(req.query.num2);
+  const resultado = num1 + num2
 
-  res.json({ mensage:`Você passou o queryParam: ${nome} e o id: ${id}`})
+  res.json({ mensage:`O resultado é ${resultado}`})
+})
+
+app.get('/api/exercicio2/:id', (req, res) => {
+  const num1 = parseFloat(req.query.num1)
+  const num2 = parseFloat(req.query.num2);
+  const resultado = num1 + num2
+
+  res.json({ mensage:`O resultado é ${resultado + 34}`})
 })
 
 app.listen(port, () => {
