@@ -1,5 +1,6 @@
 import express from "express"
-import { somar , subtrair, multiplicar, dividir } from "./exercicios/exercicio1.js"
+import { somar , subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, tabuada1a10, quilometrosmetros 
+} from "./exercicios/funcao.js"
 
 const app = express()
 app.use(express.json())
@@ -15,15 +16,34 @@ app.post("/api/exercicio2", (req, res) => {
   res.status(200).json({ mensage: `O salario é ${result} reais` })
 })
 
-app.get("/api/exercicio3", (req, res) => {
-  const pesopessoa1 = parseFloat(req.query.pesopessoa1)
-  const pesopessoa2 = parseFloat(req.query.pesopessoa2)
-  const pesopessoa3 = parseFloat(req.query.pesopessoa3)
-  const pesopessoa4 = parseFloat(req.query.pesopessoa4)
-  const pesopessoa5 = parseFloat(req.query.pesopessoa5)
-  const resultado = (pesopessoa1 + pesopessoa2 + pesopessoa3 + pesopessoa4 + pesopessoa5) / 5
+app.post("/api/exercicio3", (req, res) => {
+  const result = somar(somar(req.body.pesopessoa1, req.body.pesopessoa2), somar(req.body.pesopessoa3, somar(req.body.pesopessoa4, req.body.pesopessoa5)))
+  res.status(200).json({ mensage: `A media das 5 pessoas é ${result / 5 }` })
+})
 
-  res.json({ mensage: `A media das 5 pessoas é ${resultado}` })
+app.post("/api/exercicio4", (req, res) => {
+  const result = celsiofahrenheit(req.body.celsio)
+  res.status(200).json({ mensage: `O resultado em Fahrenheit é ${result}` })
+})
+
+app.post("/api/exercicio5", (req, res) => {
+  const result = quilometrosmilha(req.body.quilometros)
+  res.status(200).json({ mensage: `Está é a quantidade em milhas ${result}` })
+})
+
+app.post("/api/exercicio6", (req, res) => {
+  const result = segundoprelogio(req.body.temposegundo)
+  res.status(200).json({ mensage: `O horario é ${result}` })
+})
+
+app.post("/api/exercicio7", (req, res) => {
+  const result = quilometrosmetros(req.body.quilometros)
+  res.status(200).json({ mensage: `Está em ${result} metros` })
+})
+
+app.post("/api/exercicio8", (req, res) => {
+  const result = tabuada1a10(req.body.num)
+  res.status(200).json({ mensage: `Tabuada ${result}` })
 })
 
 app.listen(port, () => {
