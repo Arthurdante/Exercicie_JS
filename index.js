@@ -1,5 +1,7 @@
 import express from "express"
-import { somar , subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, tabuada1a10, quilometrosmetros 
+import { 
+  somar , subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, 
+  tabuada1a10, quilometrosmetros,aprovado, imc, operacao, posiounega, parouimpar, maiorque, triangulo
 } from "./exercicios/funcao.js"
 
 const app = express()
@@ -13,7 +15,9 @@ app.post("/api/exercicio1", (req, res) => {
 
 app.post("/api/exercicio2", (req, res) => {
   const result = multiplicar(req.body.valorhora, req.body.quantidadedehoras)
-  res.status(200).json({ mensage: `O salario é ${result} reais` })
+  res.status(200).json({
+     mensage: `O salario é ${result} reais` 
+})
 })
 
 app.post("/api/exercicio3", (req, res) => {
@@ -42,8 +46,43 @@ app.post("/api/exercicio7", (req, res) => {
 })
 
 app.post("/api/exercicio8", (req, res) => {
-  const result = tabuada1a10(req.body.num)
+  const result = tabuada1a10(req.body.num1)
   res.status(200).json({ mensage: `Tabuada ${result}` })
+})
+
+app.post("/api/exercicio9", (req, res) => {
+  const result = aprovado(req.body.num1, req.body.num2, req.body.num3)
+  res.status(200).json({ mensage: `Você foi ${result}` })
+})
+
+app.post("/api/exercicio10", (req, res) => {
+  const result = imc(req.body.sexo, req.body.altura)
+  res.status(200).json({ mensage: `O seu imc é ${result}` })
+})
+
+app.post("/api/exercicio11", (req, res) => {
+  const result = operacao(req.body.operacao, req.body.num1, req.body.num2)
+  res.status(200).json({ mensage: `O seu imc é ${result}` })
+})
+
+app.post("/api/exercicio12", (req, res) => {
+  const result = posiounega(req.body.num1)
+  res.status(200).json({ mensage: `O numero ${req.body.num1} é ${result}` })
+})
+
+app.post("/api/exercicio13", (req, res) => {
+  const result = parouimpar(req.body.num1)
+  res.status(200).json({ mensage: `O numero ${req.body.num1} é ${result}` })
+})
+
+app.post("/api/exercicio14", (req, res) => {
+  const result = maiorque(req.body.num1, req.body.num2)
+  res.status(200).json({ mensage: `O resultado é ${result}` })
+})
+
+app.post("/api/exercicio15", (req, res) => {
+  const result = triangulo(req.body.a, req.body.b, req.body.c, req.body.base, req.body.altura)
+  res.status(200).json({ mensage: `${result}` })
 })
 
 app.listen(port, () => {
