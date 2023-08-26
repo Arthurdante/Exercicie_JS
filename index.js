@@ -1,8 +1,8 @@
-import express from "express"
-import { 
-  somar , subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, 
-  tabuada1a10, quilometrosmetros,aprovado, imc, operacao, posiounega, parouimpar, maiorque, triangulo
-} from "./exercicios/funcao.js"
+const express = require("express")
+const { somar, subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, 
+  tabuada1a10, quilometrosmetros,aprovado, imc, operacao, posiounega,
+  parouimpar, maiorque, triangulo, impostoderenda, mediaponderada, valorcarro
+ } = require("./exercicios/funcao.js")
 
 const app = express()
 app.use(express.json())
@@ -83,6 +83,22 @@ app.post("/api/exercicio14", (req, res) => {
 app.post("/api/exercicio15", (req, res) => {
   const result = triangulo(req.body.a, req.body.b, req.body.c, req.body.base, req.body.altura)
   res.status(200).json({ mensage: `${result}` })
+})
+
+app.post("/api/exercicio16", (req, res) => {
+  const result = impostoderenda(req.body.cpf, req.body.dependentes, req.body.salario)
+  res.status(200).json({ mensage: `O seu imposto de renda é ${result}` })
+})
+
+app.post("/api/exercicio17", (req, res) => {
+  const result = mediaponderada(req.body.num1, req.body.num2, req.body.num3)
+  res.status(200).json(`Você foi ${result}`)
+})
+
+app.post("/api/exercicio18", (req, res) => {
+  const result = valorcarro(req.body.valordefabriva)
+  res.status(200).json(`Valor de fabrica é ${req.body.valordefabriva} e o valor final é ${result}`
+  )
 })
 
 app.listen(port, () => {
