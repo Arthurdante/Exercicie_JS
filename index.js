@@ -1,7 +1,7 @@
 const express = require("express")
 const { somar, subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, 
   tabuada1a10, quilometrosmetros,aprovado, imc, operacao, posiounega,
-  parouimpar, maiorque, triangulo, impostoderenda, mediaponderada, valorcarro
+  parouimpar, maiorque, triangulo, impostoderenda, mediaponderada, valorcarro, juros
  } = require("./exercicios/funcao.js")
 
 const app = express()
@@ -98,6 +98,23 @@ app.post("/api/exercicio17", (req, res) => {
 app.post("/api/exercicio18", (req, res) => {
   const result = valorcarro(req.body.valordefabriva)
   res.status(200).json(`Valor de fabrica é ${req.body.valordefabriva} e o valor final é ${result}`
+  )
+})
+
+app.post("/api/exercicio19", (req, res) => {
+  const result = juros(req.body.dias, req.body.taxa, req.body.capital)
+  res.status(200).json(`Sendo a taxa ${req.body.taxa}% com o capital de ${req.body.capital}R$ o juros final é ${result}`
+  )
+})
+
+app.post("/api/exercicio19", (req, res) => {
+  const pecas = [req.body.ipi, req.body.codpeca1, req.body.valorunipeca1, req.body.quantpeca1, req.body.codpeca2, req.body.valorunipeca2, req.body.quantpeca2]
+  const result = valoripi(pecas)
+  res.status(200).json(`
+  • O código da peça ${req.body.codpeca1}, valor unitário da peça ${req.body.valorunipeca1}, quantidade de peças ${req.body.quantpeca1}
+  • O código da peça ${req.body.codpeca2}, valor unitário da peça ${req.body.valorunipeca2}, quantidade de peças ${req.body.quantpeca2}
+  • O valor total é ${result}
+  `
   )
 })
 

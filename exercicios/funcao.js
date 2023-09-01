@@ -164,10 +164,15 @@ function mediaponderada(num1, num2, num3) {
     return  resultado 
 }
 function valorcarro(valordefabriva) {
-    let resultado = valordefabriva+  (valordefabriva * (28 + 45)/100)
+    let resultado = valordefabriva + (valordefabriva * (28 + 45)/100)
+    resultado = resultado.toFixed(1);
+    return  resultado 
+}
+function juros(dias, taxa, capital) {
+    let resultado = capital * (taxa/100 + 1) * dias
     resultado = resultado.toFixed(1);
     return  resultado 
 }
 module.exports = {somar , subtrair, multiplicar, dividir, celsiofahrenheit, quilometrosmilha, segundoprelogio, 
     tabuada1a10, quilometrosmetros,aprovado, imc, operacao, posiounega, 
-    parouimpar, maiorque, triangulo, impostoderenda, mediaponderada, valorcarro}
+    parouimpar, maiorque, triangulo, impostoderenda, mediaponderada, valorcarro, juros}
