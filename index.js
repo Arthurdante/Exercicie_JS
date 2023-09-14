@@ -9,8 +9,14 @@ app.use(express.json())
 const port = 3000
 
 app.post("/api/exercicio1", (req, res) => {
-  const result = somar(req.body.num1, req.body.num2)
-  res.status(200).json({ mensage: `O resultado é ${result}` })
+  try{
+    const result = somar(req.body.num1, req.body.num2)
+    res.status(200).json({ mensage: `O resultado é ${result}` })
+  }catch (error){
+    console.log(error)
+    res.status(201).json({ mensage: `deu ruim` })
+  }
+  
 })
 
 app.post("/api/exercicio2", (req, res) => {
